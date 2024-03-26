@@ -1,9 +1,9 @@
 import { Engine, World, Bodies, Runner } from "matter-js";
 import "../style.css";
 // Import the necessary modules
-var canvas = document.querySelector("canvas");
+const canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
-
+// ctx.
 // ctx.style.background='white';
 
 canvas.width = window.innerWidth;
@@ -11,7 +11,7 @@ canvas.height = window.innerHeight;
 
 // Create an engine
 const engine = Engine.create();
-var boxes = [];
+const boxes = [];
 
 addEventListener("mousedown", (event) => {
   boxes.push(

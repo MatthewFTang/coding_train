@@ -1,10 +1,9 @@
 import { Engine, World, Bodies, Runner, Composite } from "matter-js";
 import "../style.css";
 // Import the necessary modules
-var canvas = document.querySelector("canvas");
+let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
-// ctx.style.background='white';
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -12,7 +11,7 @@ canvas.height = window.innerHeight;
 // Create an engine
 const engine = Engine.create();
 
-var balls = [];
+const balls = [];
 // Add bodies to the world
 
 // Run the engine
@@ -28,7 +27,7 @@ class Ground {
       angle: angle,
     });
 
-    this.color = "#ffffff";
+    this.color = "#7d3636";
     World.add(engine.world, this.body);
   }
   draw() {
@@ -37,10 +36,8 @@ class Ground {
 
     ctx.translate(this.body.position.x, this.body.position.y);
     ctx.rotate(this.body.angle);
-    // ctx.fillStyle = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`;
     ctx.fillStyle = this.color;
     ctx.rect(-(this.w / 2), -this.h / 2, this.w, this.h);
-    // ctx.stroke();
     ctx.fill();
     ctx.restore();
   }
@@ -62,12 +59,12 @@ class Ball {
     ];
     World.add(engine.world, this.body);
   }
-  draw() {
+  draw = () => {
     ctx.fillStyle = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`;
     ctx.beginPath();
     ctx.arc(this.body.position.x, this.body.position.y, this.r, 0, Math.PI * 2);
     ctx.fill();
-  }
+  };
 }
 function showBalls() {
   for (let i = balls.length - 1; i > -1; i--) {
@@ -85,20 +82,22 @@ window.addEventListener("resize", function () {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+const groundsPlanes = [];
+
 function render() {
   requestAnimationFrame(render);
-  ctx.fillStyle = "#242424";
+  ctx.fillStyle = "hsl(120,0%,14%)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.lineWidth = 4;
   for (let i = 0; i < groundsPlanes.length; i++) {
     groundsPlanes[i].draw();
   }
   showBalls();
+  // console.log('1')
 }
 
-var groundsPlanes = [];
-groundsPlanes.push(new Ground(550, 250, 20, 700, -Math.PI / 3));
-groundsPlanes.push(new Ground(1000, 500, 20, 700, Math.PI / 3));
+groundsPlanes.push(new Ground(350, 250, 20, 900, -Math.PI / 3));
+groundsPlanes.push(new Ground(1300, 420, 20, 1100, Math.PI / 3));
 groundsPlanes.push(new Ground(550, 800, 20, 700, -Math.PI / 3));
 
 Runner.run(engine);
