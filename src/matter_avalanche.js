@@ -53,7 +53,7 @@ class Ball {
     this.body = Bodies.circle(this.x, this.y, this.r, {
       friction: 0.00001,
       restitution: 0.5,
-      density: 0.001,
+      density: 0.01,
     });
     this.color = [
       Math.random() * 255,
@@ -70,22 +70,21 @@ class Ball {
   }
 }
 function showBalls() {
-  let temp = [];
-  for (let i = 0; i < balls.length; i++) {
+  for (let i = balls.length - 1; i > -1; i--) {
     balls[i].draw();
-    if (balls[i].body.position.y < canvas.height) {
-      temp.push(balls[i]);
-    } else {
+    if (balls[i].body.position.y > canvas.height) {
       Composite.remove(engine.world, balls[i].body);
+      balls.splice(i, 1);
     }
   }
-  balls = temp;
-  console.log(balls.length);
 
-  if (Math.random() > 0.2) {
-    balls.push(new Ball(350 + Math.random() * 600, 0, Math.random() * 40));
-  }
+  balls.push(new Ball(Math.random() * canvas.width, 0, 5 + Math.random() * 20));
 }
+
+window.addEventListener("resize", function () {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 function render() {
   requestAnimationFrame(render);
   ctx.fillStyle = "#242424";
@@ -98,9 +97,9 @@ function render() {
 }
 
 var groundsPlanes = [];
-groundsPlanes.push(new Ground(350, 450, 20, 700, -Math.PI / 3));
-groundsPlanes.push(new Ground(900, 700, 20, 700, Math.PI / 3));
-groundsPlanes.push(new Ground(350, 1000, 20, 700, -Math.PI / 3));
+groundsPlanes.push(new Ground(550, 250, 20, 700, -Math.PI / 3));
+groundsPlanes.push(new Ground(1000, 500, 20, 700, Math.PI / 3));
+groundsPlanes.push(new Ground(550, 800, 20, 700, -Math.PI / 3));
 
 Runner.run(engine);
 
