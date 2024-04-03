@@ -1,14 +1,18 @@
 import "../style.css";
 var canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
+canvas.width=window.innerWidth*.9;
+canvas.height = window.innerHeight*.85;
+let button = document.getElementById('button');
 
-let ww = (canvas.width = 1000);
-let wh = (canvas.height = 1000);
+
+let ww = (canvas.width );
+let wh = (canvas.height );
 class GameOfLife {
   constructor() {
-    this.gridSize = 3;
+    this.gridSize = 5;
     this.rows = 300;
-    this.cols = 300;
+    this.cols = 200;
     this.grid = [];
     this.spawn_prob = 0.5;
     this.offset = 10;
@@ -124,8 +128,14 @@ class GameOfLife {
     ctx.lineTo(x2, y2);
     ctx.stroke();
   }
+
 }
 let app = new GameOfLife();
+button.onclick = function StartAnimation()
+{
+  app.makeCells();
+}
+
 function render(a) {
   requestAnimationFrame(render);
   //   ctx.clearRect(0, 0, canvas.width, canvas.height);

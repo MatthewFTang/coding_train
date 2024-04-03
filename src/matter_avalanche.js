@@ -1,13 +1,10 @@
 import { Engine, World, Bodies, Runner, Composite } from "matter-js";
-import "../style.css";
-// Import the necessary modules
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 // Create an engine
 const engine = Engine.create();
 
@@ -78,16 +75,16 @@ function showBalls() {
   balls.push(new Ball(Math.random() * canvas.width, 0, 5 + Math.random() * 20));
 }
 
-window.addEventListener("resize", function () {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+// window.addEventListener("resize", function () {
+//   canvas.width = window.innerWidth;
+//   canvas.height = window.innerHeight;
+// });
 const groundsPlanes = [];
 
 function render() {
   requestAnimationFrame(render);
-  ctx.fillStyle = "hsl(120,0%,14%)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // ctx.fillStyle = "hsl(120,0%,14%)";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.lineWidth = 4;
   for (let i = 0; i < groundsPlanes.length; i++) {
     groundsPlanes[i].draw();

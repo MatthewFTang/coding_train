@@ -1,14 +1,16 @@
 import { Engine, World, Bodies, Runner, Composite } from "matter-js";
-import "../../style.css";
 // Import the necessary modules
-var canvas = document.querySelector("canvas");
+const canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
-
-// ctx.style.background='white';
+let button = document.getElementById('button');
 
 // Create an engine
 
-var balls = [];
+let balls = [];
+canvas.width = window.innerWidth*.9;
+canvas.height= window.innerHeight*.85;
+const height = canvas.height*.9;
+const width = canvas.width;
 // Add bodies to the world
 
 class Ball {
@@ -22,14 +24,14 @@ class Ball {
       density: 0.01,
       isStatic: doesntmove,
     });
-    if (col == 0) {
+    if (col === 0) {
       this.color = [
         Math.random() * 255,
         Math.random() * 255,
         Math.random() * 255,
       ];
     } else {
-      this.color = [255, 255, 255];
+      this.color = [70,70,90];
     }
     World.add(engine.world, this.body);
   }
@@ -49,11 +51,22 @@ function showBalls() {
       balls.splice(i, 1);
     }
   }
-  if (Math.random() > 0.2) {
-    balls.push(new Ball(Math.random() * 1 + canvas.width / 2, 0, 4, false, 0));
+  if (Math.random() > 0.9) {
+    balls.push(new Ball(Math.random() * 1 + width/ 2, 0, 4, false, 0));
   }
+
 }
-class Box {
+function resetBalls()
+{
+  for (let i = 0 ; i <balls.length; i++)
+  {
+    Composite.remove(engine.world, balls[i].body);
+    // balls.splice(i, 1);
+  }
+balls = [];
+}
+
+class StaticRects {
   constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
@@ -63,7 +76,7 @@ class Box {
     this.body = Bodies.rectangle(this.x, this.y, this.w, this.h, {
       isStatic: true,
     });
-    this.color = [255, 255, 255];
+    this.color = [200,200,200];
     World.add(engine.world, this.body);
   }
   draw() {
@@ -78,17 +91,20 @@ class Box {
     ctx.restore();
   }
 }
-class boxStaticObjects {
+class GroundAndBins {
   constructor() {
     this.boxes = [];
     this.binSeperation = 30;
-    this.nBins = canvas.width / this.binSeperation;
+    this.offset= 100;
+    this.nBins = (width-this.offset*2) / this.binSeperation;
+    this.binHeight = 150;
+
     this.boxes.push(
-      new Box(canvas.width / 2, canvas.height - 20, canvas.width, 20)
+      new StaticRects(width / 2, height, (width-this.offset*2), 20)
     );
 
     for (let i = 0; i < this.nBins; i++) {
-      this.boxes.push(new Box(this.binSeperation * i, canvas.height, 2, 350));
+      this.boxes.push(new StaticRects(this.offset + this.binSeperation * i, height-this.binHeight/2, 2, this.binHeight));
     }
   }
   draw() {
@@ -102,10 +118,10 @@ class Pegs {
   constructor() {
     this.offset = 100;
     this.pegSeperation = 20;
-    this.r = 2;
-    this.nPegsWidth = (canvas.width - this.offset * 2) / this.pegSeperation;
+    this.r = 4;
+    this.nPegsWidth = (width - this.offset * 2) / this.pegSeperation;
     this.nPegsHeight =
-      (canvas.height - this.offset * 2) / this.pegSeperation - 4;
+      (height - this.offset * 2) / this.pegSeperation - 4;
     this.pegs = [];
     this.makePegs();
     console.log(this);
@@ -135,16 +151,21 @@ class Pegs {
   }
 }
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+
 
 const engine = Engine.create();
 let pegs = new Pegs();
-let boxes = new boxStaticObjects();
+let boxes = new GroundAndBins();
+
+button.onclick = function StartAnimation()
+{
+  resetBalls();
+}
+
 function render() {
   requestAnimationFrame(render);
-  ctx.fillStyle = "#242424";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0,width, height);
   showBalls();
   pegs.draw();
   boxes.draw();

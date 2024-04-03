@@ -22,22 +22,25 @@ class CubeWave {
     this.scene.add(this.camera);
 
     this.count = 0;
-    this.camera.position.set(0, -5, 0);
+    this.camera.position.set(0, -5,0);
     this.camera.rotation.set(-Math.PI / 4, -0.2, -0.3);
 
     // Create a renderer
-    this.renderer = new THREE.WebGLRenderer({ alpha: true });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.lighting = new THREE.AmbientLight(0xcccccc);
+    const canvas = document.getElementById('canvas');
+
+    this.renderer = new THREE.WebGLRenderer({ alpha: true ,canvas:canvas});
+
+    this.renderer.setSize(window.innerWidth*.9, window.innerHeight*.9);
+    // this.renderer.setSize(canvas.width,canvas.height)
+    // this.lighting = new THREE.AmbientLight(0xcccccc);
     // this.scene.add(this.lighting)
     this.light = new THREE.DirectionalLight(0xffffff, 2);
     this.light.position.set(0, 500, 2000);
     this.scene.add(this.light);
 
     this.scene.add(new THREE.AmbientLight(0xcccccc));
-    document.body.appendChild(this.renderer.domElement);
-    // this.colors = ["#a20e0e", "#d8580b", "#f6d354", "#4882b7", "#814a66"];
-    this.colors = ["#d8580b"];
+    this.colors = ["#a20e0e", "#d8580b", "#f6d354", "#4882b7", "#814a66"];
+    this.colors = ["#a20e0e"];
   }
   animate() {
     requestAnimationFrame(() => this.animate());
@@ -45,19 +48,8 @@ class CubeWave {
     for (let i = 0; i < this.boxes.length; i++) {
       const object = this.boxes[i];
 
-      const scale = Math.sin((this.count + this.distances[i] * 4) / 50) * 45;
-      //   console.log(scale);
-      //   let colorDist =   100*(-scale/45);
-      //   colorDist
-      //   let col = [45,colorDist,100];
-      // let rgb = lab2rgb(col
-      // rgb = Math.round(rgb);
-      // console.log("rgb("+ rgb[0]+','+rgb[1],","+rgb[2]+")")
-      // rgb=[255,255,255];
-      //   object.material.color.set("rgb("+ rgb[0]+','+rgb[1],","+rgb[2]+")");
-      // object.material.color.set(rgb[0],rgb[1],rgb[2]);
+      const scale = Math.sin((this.count + this.distances[i] * 4) / 50) * 35;
       object.scale.set(1, scale, 1);
-      //   object.color.set()
     }
     this.count -= 1;
 
@@ -77,20 +69,20 @@ class CubeWave {
         let dist = (x * x + z * z) / maxSize;
         let x1 = ((x/maxSize)*255)-127 ;
         let z1 = ((z/maxSize)*255)-127;
-        // x1 = 125;
-        // z1 = 150;
         let rgb = lab2rgb([65,x1,z1])
+        // let rgb = this.colors[Math.floor(Math.random() * this.colors.length)]
         const object = new THREE.Mesh(
           geometry,
           new THREE.MeshLambertMaterial({
             color: (this.color = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`),
+            // color : rgb
           })
         );
 
         this.distances.push(dist);
 
         object.position.x = x - maxSize / 2;
-        object.position.y = -5;
+        object.position.y = -6;
         object.position.z = z - maxSize / 2;
         this.boxes.push(object);
         this.scene.add(object);
