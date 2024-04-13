@@ -1,12 +1,10 @@
 
 import {Boids} from "./Boids.js"
-
-
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width=window.innerWidth*.9;
-canvas.height = window.innerHeight*.85;
+canvas.width=window.innerWidth;
+canvas.height = window.innerHeight;
 
 
 const n_Boids = 100;

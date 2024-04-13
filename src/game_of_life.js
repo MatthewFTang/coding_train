@@ -1,5 +1,4 @@
-import "../style.css";
-var canvas = document.querySelector("canvas");
+const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 canvas.width=window.innerWidth*.9;
 canvas.height = window.innerHeight*.85;
@@ -21,6 +20,7 @@ class GameOfLife {
   }
   render() {
     this.drawCells();
+
     // this.drawGrid();
     // if (this.frameCount % 1 == 0) {
     this.updateCells();
@@ -89,9 +89,9 @@ class GameOfLife {
     for (let x = 0; x < this.rows; x++) {
       for (let y = 0; y < this.cols; y++) {
         if (this.grid[x][y] === 1) {
-          ctx.fillStyle = "white";
-        } else {
           ctx.fillStyle = "black";
+        } else {
+          ctx.fillStyle = "#f4f4f4";
         }
         ctx.fillRect(
           this.offset + x * this.gridSize,

@@ -2,22 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coding train examples</title>
 </head>
 
 <body>
-<div class = 'top_nav'>
-    <a href="../index.html">Avalanche</a>
-    <a href="ripple.html">Ripple</a>
-    <a href="cubeWave.html">Cube wave</a>
-    <a href="game_of_life.html">Game of life</a>
-    <a href="plink.html">Plinko</a>
-    <a href = "flocking.html"> Flocking</a>
-    <a href = "flowfield.html"> Flow field</a>
 
-</div>
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="links">
+            <ul>
+                <li><a href="../index.html">Avalanche</a></li>
+                <li><a href="ripple.html">Ripple</a></li>
+                <li><a href="cubeWave.html">Cube Wave</a></li>
+                <li><a href="game_of_life.html">Game of Life</a></li>
+                <li><a href="plink.html">Plinko</a></li>
+                <li><a href="flocking.html">Flocking</a></li>
+                <li><a href="flowfield.html">Flow field</a></li>
+                <li><a href="motion_silencing.html">Motion Silencing</a></li>
+                <li><a href="circle_packing.html">Circle Packing</a></li>
+            </ul>
+        </nav>
+
+    </header>
 
 <div id="app">
     <canvas id="canvas">
@@ -26,7 +36,7 @@
     <div>
         <button id = 'button' class="button-18"> Reset</button>
 
-        <input type="range" id="noiseScale" name="noiseScale" min="0" max=".05" value="0.001" step="0.0001" />
+        <input type="range" id="noiseScale" name="noiseScale" min="0.0001" max=".02" value="0.001" step="0.0001"  />
         <label for="noiseScale">Noise scaling</label>
 
         <input type="range" id="maxForce" name="maxForce" min="0" max="1" value="0.01" step="0.0001" />

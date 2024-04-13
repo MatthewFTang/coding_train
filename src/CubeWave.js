@@ -27,10 +27,9 @@ class CubeWave {
 
     // Create a renderer
     const canvas = document.getElementById('canvas');
-
     this.renderer = new THREE.WebGLRenderer({ alpha: true ,canvas:canvas});
 
-    this.renderer.setSize(window.innerWidth*.9, window.innerHeight*.9);
+    this.renderer.setSize(window.innerWidth*.8, window.innerHeight*.8);
     // this.renderer.setSize(canvas.width,canvas.height)
     // this.lighting = new THREE.AmbientLight(0xcccccc);
     // this.scene.add(this.lighting)

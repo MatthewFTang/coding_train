@@ -71,7 +71,6 @@ function showBalls() {
       balls.splice(i, 1);
     }
   }
-
   balls.push(new Ball(Math.random() * canvas.width, 0, 5 + Math.random() * 20));
 }
 

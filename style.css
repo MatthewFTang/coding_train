@@ -1,7 +1,10 @@
 body {
     background: #040610;
-    color: #2c1212;
+    color: #547d1d;
     font: 100%/20px helvetica, arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    /*display: flex;*/
 }
 
 input {
@@ -22,11 +25,17 @@ canvas {
     display: block;
     height: 80%;
     width: 95%;
-    /*left: 0;*/
-    margin: auto;
-    padding: 14px 16px 0 0;
-    position: relative;
+    /*!*left: 0;*!*/
+    /*margin: 15px ;*/
+    /*padding-top: 20px;*/
+    /*position: relative;*/
+    /*border: none;*/
+    /*outline: none;*/
+    /*background: #924646;*/
+    box-shadow: 0.2em 0.2em 2em #0004;
+    border-radius: 1em;
 }
+
 
 
 .top_nav {

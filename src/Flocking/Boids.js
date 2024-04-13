@@ -1,124 +1,14 @@
-class Vector {
-    constructor(x, y, z) {
-        this.x = x || 0;
-        this.y = y || 0;
-        this.z = z || 0;
-    }
-
-    add(x,y,z) {
-        if (x instanceof Vector) {
-            this.x += x.x || 0;
-            this.y += x.y || 0;
-            this.z += x.z || 0;
-            return this;
-        }
-        if (Array.isArray(x)) {
-            this.x += x[0] || 0;
-            this.y += x[1] || 0;
-            this.z += x[2] || 0;
-            return this;
-        }
-        this.x += x || 0;
-        this.y += y || 0;
-        this.z += z || 0;
-        return this;
-
-    }
-
-    sub(x,y,z) {
-        if (x instanceof Vector) {
-            this.x -= x.x || 0;
-            this.y -= x.y || 0;
-            this.z -= x.z || 0;
-            return this;
-        }
-        if (Array.isArray(x)) {
-            this.x -= x[0] || 0;
-            this.y -= x[1] || 0;
-            this.z -= x[2] || 0;
-            return this;
-        }
-        this.x -= x || 0;
-        this.y -= y || 0;
-        this.z -= z || 0;
-        return this;
-    }
-
-    mag() {
-      return Math.sqrt(this.x *this.x + this.y*this.y + this.z *this.z);
-    }
-
-    setMag(val) {
-        let mag = this.mag();
-        this.mult(1/mag);
-        this.mult(val)
-    }
-
-    mult(x,y,z) {
-        if (x instanceof Vector) {
-            this.x *= x.x || 0;
-            this.y *= x.y || 0;
-            this.z *= x.z || 0;
-            return this;
-        }
-        if (Array.isArray(x)) {
-            this.x *= x[0] || 0;
-            this.y *= x[1] || 0;
-            this.z *= x[2] || 0;
-            return this;
-        }
-        this.x *= x || 0;
-        this.y *= y || 0;
-        this.z *= z || 0;
-        return this;
-    }
-
-    div(x,y,z) {
-        if (x instanceof Vector) {
-            this.x /= x.x || 0;
-            this.y /= x.y || 0;
-            this.z /= x.z || 0;
-            return this;
-        }
-        if (Array.isArray(x)) {
-            this.x /= x[0] || 0;
-            this.y /= x[1] || 0;
-            this.z /= x[2] || 0;
-            return this;
-        }
-        this.x /= x || 0;
-        this.y /= y || 0;
-        this.z /= z || 0;
-        return this;
-    }
-
-    heading() {
-      return Math.atan2(this.y,this.x);
-    }
-    distanceSq(other)
-    {
-        return (((this.x  -other.x )*(this.x  -other.x )) + ((this.y  -other.y )*(this.y  -other.y )));
-    }
-    limit(max) {
-        const mSq = this.mag();
-        if (mSq > max * max) {
-            this.div(mSq) //normalize it
-                .mult(max);
-        }
-        return this;
-    }
-}
 
 class Boids {
     constructor() {
-        this.position =  new Vector(Math.random() * canvas.width, Math.random() * canvas.height);
-        this.velocity =  new Vector(-2+(Math.random()*4),-2+Math.random()*4);
-        this.acceleration =  new Vector(0,0);
-        this.r = 4;
-        this.maxforce = .002;
-        this.maxSpeed = 10;
-        this.color = 'white';
 
+        this.position =  new p5.Vector(Math.random() * canvas.width, Math.random() * canvas.height);
+        this.velocity =  new p5.Vector(-2+(Math.random()*4),-2+Math.random()*4);
+        this.acceleration =  new p5.Vector(0,0);
+        this.r = 4;
+        this.maxforce = .2;
+        this.maxSpeed = 15;
+        this.color = 'black';
         this.visualRange = 15;
     }
 
@@ -164,17 +54,17 @@ class Boids {
     }
 
     separate_align_cohesion(flock) {
-        let sumSeparate = new Vector(0, 0);
-        let sumAlign = new Vector(0, 0);
-        let sumCohesion = new Vector(0, 0);
+        let sumSeparate = new p5.Vector(0, 0);
+        let sumAlign = new p5.Vector(0, 0);
+        let sumCohesion = new p5.Vector(0, 0);
         let count = 0;
 
         for (let other of flock) {
             if (this !== other) {
-                let distance = this.position.distanceSq(other.position);
+                let distance = this.position.dist(other.position);
                 if (distance < this.visualRange*this.visualRange) {
                     // Separate
-                    let diff = new Vector(this.position);
+                    let diff = new p5.Vector(this.position);
                     diff.sub(other.position);
                     diff.div(distance);
                     sumSeparate.add(diff);
@@ -200,15 +90,15 @@ class Boids {
             sumCohesion.sub(this.position);
             let steerCohesion = this.steer(sumCohesion);
 
-            // this.applyForce(steerSeparate);
+            this.applyForce(steerSeparate);
             // this.applyForce(steerAlign);
-            this.applyForce(steerCohesion);
+            // this.applyForce(steerCohesion);
         }
     }
 
     steer(target) {
         target.setMag(this.maxSpeed);
-        let steer = new Vector(target);
+        let steer = new p5.Vector(target);
         steer.sub(this.velocity);
         // return steer;
         return steer.limit(this.maxforce);
