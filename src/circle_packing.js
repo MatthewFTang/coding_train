@@ -1,5 +1,5 @@
 import { Circle } from "./Circle.js";
-import "../style.css";
+// import "../style.css";
 import fs from 'fs';
 let canvas = document.getElementById("canvas");
 

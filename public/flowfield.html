@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="../main.css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coding train examples</title>
 </head>
@@ -10,24 +12,12 @@
 <body>
 
 <div id="wrapper">
-
-    <!-- Header -->
-    <header id="header">
-        <nav class="links">
-            <ul>
-                <li><a href="../index.html">Avalanche</a></li>
-                <li><a href="ripple.html">Ripple</a></li>
-                <li><a href="cubeWave.html">Cube Wave</a></li>
-                <li><a href="game_of_life.html">Game of Life</a></li>
-                <li><a href="plink.html">Plinko</a></li>
-                <li><a href="flocking.html">Flocking</a></li>
-                <li><a href="flowfield.html">Flow field</a></li>
-                <li><a href="motion_silencing.html">Motion Silencing</a></li>
-                <li><a href="circle_packing.html">Circle Packing</a></li>
-            </ul>
-        </nav>
-
-    </header>
+</div>
+<script>
+    $(function () {
+        $("#wrapper").load("./nav.html")
+    });
+</script>
 
 <div id="app">
     <canvas id="canvas">

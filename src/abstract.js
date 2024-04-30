@@ -67,25 +67,16 @@ function createPixelNoise()
         // Modify pixel data
         if (Math.random() > .5)
         {
+            r = 4;
 
-
-            r = 255;
-            g = 255;
-            b = 255;
-            a = 15;
         } else {
-            r = 0;
-            g = 0;
-            b = 0;
-            a = 15;
+            r = -4;
         }
-        imageData[i ++]*=100;
-        // g = data[i ++];
-        // b = data[i ++];
-        // a = data[i ++];
+        imageData.data[i ]+=r;
+        imageData.data[i+1 ]+=r;
+        imageData.data[i +2]+=r;
+
     }
-
-
     ctx.putImageData(imageData, 0, 0);
 
 }
@@ -104,15 +95,15 @@ function applyBlur()
 function drawImage() {
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    applyBlur();
+
     colors = color_palette[which_col];
-    console.log(color_palette.length)
     for (let i = 0; i < n_boxes; i++) {
 
         let box = new Box();
         box.display(ctx);
     }
 
-    applyBlur();
 }
 
 

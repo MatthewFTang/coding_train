@@ -21,42 +21,47 @@ ctx.clearRect(0,0,canvas.width,canvas.height);
 const scl =0.002;
 ctx.strokeStyle=`rgba(0,0,0,0.1)`;
 let currentStep = 0;
-for (let i=0; i<steps; i++)
+
+function flow_field()
 {
-    // let dir = Math.random()*Math.PI;/
-    // let v = (3+noise(current_x*scl,current_y*scl,0))*40;
-    // dir+=.02;
-    let dir = noise(current_x*scl,current_y*scl)*Math.PI;
-    // let colorAngle = noise2(current_x*scl*.1,current_y*scl*.1,0)*Math.PI*2;
-    // ctx.strokeStyle=`hsl(${colorAngle*180/Math.PI},75%,50%)`;
-    let v =Math.random()*15;
-    let dx = v * Math.cos(dir);
-    let dy = v * Math.sin(dir);
-    let next_x = current_x+dx;
-    let next_y =current_y+dy
-    if (current_x<0 || current_x>=canvas.width || current_y<0 || current_y>=canvas.height ||currentStep>300)
+    for (let i=0; i<steps; i++)
     {
+        // let dir = Math.random()*Math.PI;/
+        // let v = (3+noise(current_x*scl,current_y*scl,0))*40;
+        // dir+=.02;
+        let dir = noise(current_x*scl,current_y*scl)*Math.PI;
+        // let colorAngle = noise2(current_x*scl*.1,current_y*scl*.1,0)*Math.PI*2;
+        // ctx.strokeStyle=`hsl(${colorAngle*180/Math.PI},75%,50%)`;
+        let v =5;
+        let dx = v * Math.cos(dir);
+        let dy = v * Math.sin(dir);
+        let next_x = current_x+dx;
+        let next_y =current_y+dy
+        if (current_x<0 || current_x>=canvas.width || current_y<0 || current_y>=canvas.height ||currentStep>300)
+        {
 
-         next_x = Math.random()*canvas.width;
-         next_y = Math.random()*canvas.height;
-        current_y = next_y;
-        current_x = next_x;
-        currentStep=0;
-        // dir+=Math.PI/24;
+            next_x = Math.random()*canvas.width;
+            next_y = Math.random()*canvas.height;
+            current_y = next_y;
+            current_x = next_x;
+            currentStep=0;
+            // dir+=Math.PI/24;
 
+        }
+        currentStep++;
+        ctx.beginPath();
+        ctx.moveTo(current_x, current_y);
+        // ctx.arc(current_x,current_y,3,0,Math.PI*2);
+        ctx.lineTo(next_x, next_y);
+        ctx.stroke();
+        ctx.lineWidth=1;
+        current_x= next_x;
+        current_y= next_y;
     }
-    currentStep++;
-    ctx.beginPath();
-    ctx.moveTo(current_x, current_y);
-    // ctx.arc(current_x,current_y,3,0,Math.PI*2);
-    ctx.lineTo(next_x, next_y);
-    ctx.stroke();
-    ctx.lineWidth=1;
-    current_x= next_x;
-    current_y= next_y;
+
+
 }
-
-
+flow_field();
 //
 // img.onload = function() {
 //     canvas.width=this.width;

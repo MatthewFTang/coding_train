@@ -6,10 +6,10 @@ class Boids {
         this.velocity =  new p5.Vector(-2+(Math.random()*4),-2+Math.random()*4);
         this.acceleration =  new p5.Vector(0,0);
         this.r = 4;
-        this.maxforce = .2;
-        this.maxSpeed = 15;
+        this.maxforce = .02;
+        this.maxSpeed = 5;
         this.color = 'black';
-        this.visualRange = 15;
+        this.visualRange = 30;
     }
 
     render(ctx) {
@@ -31,9 +31,7 @@ class Boids {
 
     update() {
         this.velocity.add(this.acceleration);
-        // if (this.velocity.mag() < 3) {
-        //     this.velocity.setMag(this.maxSpeed / 2);
-        // }
+          this.velocity.limit(this.maxSpeed);
         this.position.add(this.velocity);
         this.acceleration.mult(0);
         // check if out of bounds
@@ -62,7 +60,7 @@ class Boids {
         for (let other of flock) {
             if (this !== other) {
                 let distance = this.position.dist(other.position);
-                if (distance < this.visualRange*this.visualRange) {
+                if (distance < this.visualRange) {
                     // Separate
                     let diff = new p5.Vector(this.position);
                     diff.sub(other.position);
@@ -79,29 +77,29 @@ class Boids {
         if (count > 0) {
             //separate
             sumSeparate.div(count);
-            let steerSeparate = this.steer(sumSeparate);
+            // let steer =  new p5.Vector.sub(sumSeparate,this.velocity);
+            // steer.limit(this.maxforce);
+            // this.applyForce(steer)
+            this.steer(sumSeparate);
 
             // align
             sumAlign.div(count);
-            let steerAlign = this.steer(sumAlign);
+            this.steer(sumAlign);
 
             //cohesion
             sumCohesion.div(count);
-            sumCohesion.sub(this.position);
-            let steerCohesion = this.steer(sumCohesion);
+            // sumCohesion.div(this.position);
+            this.steer(sumCohesion);
 
-            this.applyForce(steerSeparate);
-            // this.applyForce(steerAlign);
-            // this.applyForce(steerCohesion);
         }
     }
 
     steer(target) {
         target.setMag(this.maxSpeed);
-        let steer = new p5.Vector(target);
-        steer.sub(this.velocity);
-        // return steer;
-        return steer.limit(this.maxforce);
+
+        let steer =  new p5.Vector.sub(target,this.velocity);
+        steer.limit(this.maxforce);
+        this.acceleration.add(steer);
     }
 
     applyForce(force) {
