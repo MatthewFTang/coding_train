@@ -2,18 +2,6 @@
 
 This repository contains various interactive simulations and visualizations inspired by **Coding Train** challenges and other creative coding resources. The project is hosted on **GitHub Pages** for easy access and exploration.
 
-## Table of Contents
-
--   [Overview](#overview)
--   [Live Demo](#live-demo)
--   [Features](#features)
--   [Setup](#setup)
--   [Usage](#usage)
--   [Inspiration](#inspiration)
--   [License](#license)
-
----
-
 ## Overview
 
 This project showcases a collection of creative coding examples, including:
