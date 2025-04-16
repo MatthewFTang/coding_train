@@ -1,14 +1,12 @@
-import { Engine, World, Bodies, Runner, Composite } from "matter-js";
-
-let canvas = document.querySelector("canvas");
-let ctx = canvas.getContext("2d");
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth * 0.9;
 canvas.height = window.innerHeight * 0.8;
 
 // Create an engine
-const engine = Engine.create();
-
+const engine = Matter.Engine.create();
+engine.world.gravity = 1;
 const balls = [];
 
 // Ground class definition
@@ -18,13 +16,13 @@ class Ground {
 		this.y = y;
 		this.h = h;
 		this.w = w;
-		this.body = Bodies.rectangle(this.x, this.y, this.w, this.h, {
+		this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, {
 			isStatic: true,
 			angle: angle,
 		});
 
 		this.color = "#7d3636";
-		World.add(engine.world, this.body);
+		Matter.World.add(engine.world, this.body);
 	}
 	draw() {
 		ctx.save();
@@ -45,7 +43,7 @@ class Ball {
 		this.x = x;
 		this.y = y;
 		this.r = r;
-		this.body = Bodies.circle(this.x, this.y, this.r, {
+		this.body = Matter.Bodies.circle(this.x, this.y, this.r, {
 			friction: 0.00001,
 			restitution: 0.5,
 			density: 0.01,
@@ -55,7 +53,7 @@ class Ball {
 			Math.random() * 255,
 			Math.random() * 255,
 		];
-		World.add(engine.world, this.body);
+		Matter.World.add(engine.world, this.body);
 	}
 	draw = () => {
 		ctx.fillStyle = `rgb(${this.color[0]}, ${this.color[1]}, ${this.color[2]})`;
@@ -76,7 +74,7 @@ function showBalls() {
 	for (let i = balls.length - 1; i > -1; i--) {
 		balls[i].draw();
 		if (balls[i].body.position.y > canvas.height) {
-			Composite.remove(engine.world, balls[i].body);
+			Matter.World.remove(engine.world, balls[i].body);
 			balls.splice(i, 1);
 		}
 	}
@@ -101,8 +99,8 @@ function createGroundPlanes() {
 	// Create left ground plane
 	groundsPlanes.push(
 		new Ground(
-			centerX - 200, // Start left of the center
-			centerY - 50, // Slightly above the center
+			centerX - 300, // Start left of the center
+			centerY - 400, // Slightly above the center
 			groundWidth,
 			groundHeight,
 			-angle // Tilted to the left
@@ -112,8 +110,8 @@ function createGroundPlanes() {
 	// Create right ground plane
 	groundsPlanes.push(
 		new Ground(
-			centerX + 200, // Start right of the center
-			centerY - 400, // Slightly above the center
+			centerX + 400, // Start right of the center
+			centerY - 100, // Slightly above the center
 			groundWidth,
 			groundHeight,
 			angle // Tilted to the right
@@ -123,11 +121,11 @@ function createGroundPlanes() {
 	// Create bottom ground plane
 	groundsPlanes.push(
 		new Ground(
-			centerX+200, // Centered horizontally
-			centerY + 350, // Below the center
+			centerX, // Centered horizontally
+			centerY + 200, // Below the center
 			groundWidth,
-			groundHeight * 0.7, // Shorter height
-			angle // Tilted to the left
+			groundHeight * 1.2, // Shorter height
+			-angle // Tilted to the left
 		)
 	);
 }
@@ -140,7 +138,7 @@ function render() {
 	requestAnimationFrame(render);
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.lineWidth = 4;
-
+	Matter.Engine.update(engine);
 	// Draw ground planes
 	for (let i = 0; i < groundsPlanes.length; i++) {
 		groundsPlanes[i].draw();
@@ -151,7 +149,7 @@ function render() {
 }
 
 // Run the engine
-Runner.run(engine);
+Matter.Runner.run(engine);
 
 // Start rendering
 render();
