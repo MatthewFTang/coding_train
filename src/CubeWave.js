@@ -1,4 +1,4 @@
-import * as THREE from "three";
+// import * as THREE from "three";
 
 /**
  * CubeWave class creates a 3D wave animation using cubes.
