@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <link rel="stylesheet" href="../main.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Coding train examples</title>
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<link rel="stylesheet" href="../main.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Coding train examples</title>
+	</head>
 
-<body>
-<div id="wrapper">
-</div>
-<script>
-    $(function () {
-        $("#wrapper").load("./nav.html")
-    });
-</script>
+	<body>
+		<div id="wrapper"></div>
+		<header id="header">
+			<nav class="links">
+				<ul>
+					<li><a href="../index.html">Avalanche</a></li>
+					<li><a href="ripple.html">Ripple</a></li>
+					<li><a href="cubeWave.html">Cube Wave</a></li>
+					<li><a href="game_of_life.html">Game of Life</a></li>
+					<li><a href="plink.html">Plinko</a></li>
+					<li><a href="flocking.html">Flocking</a></li>
+					<li><a href="flowfield.html">Flow field</a></li>
+					<li>
+						<a href="motion_silencing.html">Motion Silencing</a>
+					</li>
+					<li><a href="circle_packing.html">Circle Packing</a></li>
+					<li><a href="abstract_background.html">Abstract</a></li>
+					<li><a href="static_flow_field.html">Static flow</a></li>
+				</ul>
+			</nav>
+		</header>
 
-<div class="figure">
-    <canvas id="canvas">
-        <script type="module" src="/src/abstract.js"></script>
-    </canvas>
-</div>
+		<div class="figure">
+			<canvas id="canvas">
+				<script type="module" src="/src/abstract.js"></script>
+			</canvas>
+		</div>
 
-<div>
-    <button class='button' id="start">New colours</button>
-    <input type="range" id="BlurSlider" name="maxForce" min="0" max="100" value="4" step="0.01" />
-    <label for="BlurSlider">Blur</label></div>
-</body>
+		<div>
+			<button class="button" id="start">New colours</button>
+			<input
+				type="range"
+				id="BlurSlider"
+				name="maxForce"
+				min="0"
+				max="100"
+				value="4"
+				step="0.01"
+			/>
+			<label for="BlurSlider">Blur</label>
+		</div>
+	</body>
 </html>

@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../main.css" />
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../main.css" />
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/javascript" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/javascript" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
 
-    <title>Coding train examples</title>
-</head>
+		<title>Coding train examples</title>
+	</head>
 
-<body>
+	<body>
+		<div id="wrapper"></div>
+		<header id="header">
+			<nav class="links">
+				<ul>
+					<li><a href="../index.html">Avalanche</a></li>
+					<li><a href="ripple.html">Ripple</a></li>
+					<li><a href="cubeWave.html">Cube Wave</a></li>
+					<li><a href="game_of_life.html">Game of Life</a></li>
+					<li><a href="plink.html">Plinko</a></li>
+					<li><a href="flocking.html">Flocking</a></li>
+					<li><a href="flowfield.html">Flow field</a></li>
+					<li>
+						<a href="motion_silencing.html">Motion Silencing</a>
+					</li>
+					<li><a href="circle_packing.html">Circle Packing</a></li>
+					<li><a href="abstract_background.html">Abstract</a></li>
+					<li><a href="static_flow_field.html">Static flow</a></li>
+				</ul>
+			</nav>
+		</header>
 
-<div id="wrapper">
-</div>
-<script>
-    $(function () {
-        $("#wrapper").load("./nav.html")
-    });
-</script>
+		<div id="app">
+			<canvas id="canvas">
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
 
-<div id="app">
-    <canvas id="canvas">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
-
-        <script type="module" src="/src/Flocking/sketch.js"></script>
-
-    </canvas>
-</div>
-
-
-</body>
+				<script type="module" src="/src/Flocking/sketch.js"></script>
+			</canvas>
+		</div>
+	</body>
 </html>

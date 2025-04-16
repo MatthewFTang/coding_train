@@ -122,7 +122,7 @@ function createGroundPlanes() {
 	groundsPlanes.push(
 		new Ground(
 			centerX, // Centered horizontally
-			centerY + 200, // Below the center
+			centerY + 400, // Below the center
 			groundWidth,
 			groundHeight * 1.2, // Shorter height
 			-angle // Tilted to the left
