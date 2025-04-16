@@ -31,7 +31,7 @@ Each example is implemented using **HTML**, **CSS**, and **JavaScript**, with li
 
 You can view the live demo of this project on **GitHub Pages**:
 
-[Live Demo](https://<your-username>.github.io/<your-repo-name>/)
+[Live Demo](https://matthewftang.github.io/coding_train/)
 
 ---
 
@@ -43,12 +43,3 @@ You can view the live demo of this project on **GitHub Pages**:
 -   **Inspiration Links**: Each example includes links to its inspiration sources.
 
 ---
-
-## Setup
-
-To run this project locally:
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/<your-username>/<your-repo-name>.git
-    ```
