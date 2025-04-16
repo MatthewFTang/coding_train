@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../main.css" />
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="../main.css" />
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coding train examples</title>
-</head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Coding train examples</title>
+	</head>
 
-<body>
+	<body>
+		<div id="wrapper"></div>
+		<script>
+			$(function () {
+				$("#wrapper").load("./nav.html");
+			});
+		</script>
 
-<div id="wrapper">
-</div>
-<script>
-    $(function () {
-        $("#wrapper").load("./nav.html")
-    });
-</script>
+		<div id="app" class="main">
+			<canvas id="canvas">
+				<script type="module" src="/src/flowfield.js"></script>
+			</canvas>
+			<div id="controls" class="controls">
+				<button id="button" class="button-18">Reset</button>
 
-<div id="app">
-    <canvas id="canvas">
-        <script type="module" src="/src/flowfield.js"></script>
-    </canvas>
-    <div>
-        <button id = 'button' class="button-18"> Reset</button>
+				<label for="noiseScale">Noise scaling</label>
+				<input
+					type="range"
+					id="noiseScale"
+					name="noiseScale"
+					min="0.0001"
+					max=".02"
+					value="0.001"
+					step="0.0001"
+				/>
 
-        <input type="range" id="noiseScale" name="noiseScale" min="0.0001" max=".02" value="0.001" step="0.0001"  />
-        <label for="noiseScale">Noise scaling</label>
-
-        <input type="range" id="maxForce" name="maxForce" min="0" max="1" value="0.01" step="0.0001" />
-        <label for="maxForce">Max force</label>
-    </div>
-
-
-</div>
-
-
-</body>
+				<label for="maxForce">Max force</label>
+				<input
+					type="range"
+					id="maxForce"
+					name="maxForce"
+					min="0"
+					max="1"
+					value="0.01"
+					step="0.0001"
+				/>
+			</div>
+		</div>
+	</body>
 </html>

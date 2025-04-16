@@ -5,8 +5,8 @@ const ctx = canvas.getContext("2d");
 import {createNoise3D} from 'simplex-noise';
 
 
-canvas.width = window.innerWidth * .9;
-canvas.height = window.innerHeight * .85;
+canvas.width = window.innerWidth * .85;
+canvas.height = window.innerHeight * .65;
 
 let button = document.getElementById('button');
 let noiseScale = document.getElementById('noiseScale')

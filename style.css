@@ -1,105 +1,118 @@
 body {
-    background: #040610;
-    color: #547d1d;
-    font: 100%/20px helvetica, arial, sans-serif;
-    justify-content: center;
-    align-items: center;
-    /*display: flex;*/
+	background: #040610;
+	color: #547d1d;
+	font: 100%/20px helvetica, arial, sans-serif;
+	justify-content: center;
+	align-items: center;
+	/*display: flex;*/
 }
 
 input {
-    display: inline-block;
-    width: 6em;
-    position: relative;
-    /*top: -3em;*/
+	display: inline-block;
+	width: 6em;
+	position: relative;
+	/*top: -3em;*/
+}
+.controls {
+	display: flex; /* Use flexbox to align items in a row */
+	align-items: center; /* Vertically center the items */
+	gap: 10px; /* Add spacing between elements */
 }
 
+.controls input[type="range"],
+.controls label,
+.controls button {
+	margin: 0; /* Remove default margins */
+}
 label {
-    display: inline-block;
-    width: 6em;
-    margin-right: .5em;
-    padding-top: 1.5em;
-    color:#ffffff;
+	display: inline-block;
+	width: 6em;
+	margin-right: 0.5em;
+	padding-top: 1.5em;
+	color: #ffffff;
 }
 canvas {
-    display: block;
-    height: 80%;
-    width: 95%;
-    /*!*left: 0;*!*/
-    /*margin: 15px ;*/
-    /*padding-top: 20px;*/
-    /*position: relative;*/
-    /*border: none;*/
-    /*outline: none;*/
-    /*background: #924646;*/
-    box-shadow: 0.2em 0.2em 2em #0004;
-    border-radius: 1em;
+	display: block;
+	height: 80%;
+	width: 95%;
+	/*!*left: 0;*!*/
+	/*margin: 15px ;*/
+	/*padding-top: 20px;*/
+	/*position: relative;*/
+	/*border: none;*/
+	/*outline: none;*/
+	/*background: #924646;*/
+	box-shadow: 0.2em 0.2em 2em #0004;
+	border-radius: 1em;
 }
 
-
-
 .top_nav {
-    background-color: #121d23;
-    overflow: hidden;
+	background-color: #121d23;
+	overflow: hidden;
 }
 
 .top_nav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 5px 16px;
-    text-decoration: none;
-    font-size: 17px;
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 5px 16px;
+	text-decoration: none;
+	font-size: 17px;
 }
 
 .top_nav a:hover {
-    background-color: #ddd;
-    color: black;
+	background-color: #ddd;
+	color: black;
 }
 
 /* CSS */
 .button-18 {
-    align-items: center;
-    background-color: #0A66C2;
-    border: 0;
-    border-radius: 100px;
-    box-sizing: border-box;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    justify-content: center;
-    line-height: 20px;
-    max-width: 480px;
-    min-height: 40px;
-    min-width: 0px;
-    overflow: hidden;
-    padding: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-    text-align: center;
-    touch-action: manipulation;
-    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    user-select: none;
-    -webkit-user-select: none;
-    vertical-align: middle;
+	align-items: center;
+	background-color: #0a66c2;
+	border: 0;
+	border-radius: 100px;
+	box-sizing: border-box;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto,
+		"Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell,
+		"Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+		"Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	justify-content: center;
+	line-height: 20px;
+	max-width: 480px;
+	min-height: 40px;
+	min-width: 0px;
+	overflow: hidden;
+	padding: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-align: center;
+	touch-action: manipulation;
+	transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+		box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+		color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+	user-select: none;
+	-webkit-user-select: none;
+	vertical-align: middle;
 }
 
 .button-18:hover,
 .button-18:focus {
-    background-color: #16437E;
-    color: #ffffff;
+	background-color: #16437e;
+	color: #ffffff;
 }
 
 .button-18:active {
-    background: #09223b;
-    color: rgb(255, 255, 255, .7);
+	background: #09223b;
+	color: rgb(255, 255, 255, 0.7);
 }
 
 .button-18:disabled {
-    cursor: not-allowed;
-    background: rgba(0, 0, 0, .08);
-    color: rgba(0, 0, 0, .3);
+	cursor: not-allowed;
+	background: rgba(0, 0, 0, 0.08);
+	color: rgba(0, 0, 0, 0.3);
 }
