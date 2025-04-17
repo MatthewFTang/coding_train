@@ -6,11 +6,11 @@ const ctx = canvas.getContext("2d");
 canvas.height = window.innerHeight * 0.8;
 canvas.width = window.innerWidth * 0.9;
 
-const simplex = new SimplexNoise();
-
 let button = document.getElementById("button");
 
 function flow_field() {
+	var simplex = new SimplexNoise();
+
 	const steps = 1000000;
 	let current_x = Math.floor(canvas.width / 2);
 	let current_y = Math.floor(canvas.height / 2);
@@ -55,5 +55,7 @@ function flow_field() {
 flow_field();
 
 button.onclick = function StartAnimation() {
+	var simplex = new SimplexNoise();
+
 	flow_field();
 };
