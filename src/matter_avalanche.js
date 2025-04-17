@@ -6,7 +6,6 @@ canvas.height = window.innerHeight * 0.8;
 
 // Create an engine
 const engine = Matter.Engine.create();
-engine.world.gravity = 1;
 const balls = [];
 
 // Ground class definition
