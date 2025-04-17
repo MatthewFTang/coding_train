@@ -2,7 +2,7 @@
 	// Fetch colors.json dynamically
 	async function loadColors() {
 		try {
-			const response = await fetch("./src/assets/colors.json");
+			const response = await fetch("../src/assets/colors.json");
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
