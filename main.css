@@ -139,7 +139,23 @@ blockquote,
 q {
 	quotes: none;
 }
+#canvas-container {
+	width: 80%; /* Match the canvas width */
+	margin: 0 auto; /* Center the container */
+	text-align: center; /* Center-align the text inside */
+}
 
+#canvas {
+	display: block;
+	width: 80%; /* Ensure the canvas fills the container */
+	margin: 0 auto;
+}
+
+.caption {
+	font-size: 1rem;
+	color: #555;
+	margin-top: 10px;
+}
 blockquote:before,
 blockquote:after,
 q:before,
@@ -192,7 +208,8 @@ input {
 .controls label,
 .controls button {
 	margin: 0; /* Remove default margins */
-} */
+/* } */
+*/
 /* Basic */
 
 @-ms-viewport {

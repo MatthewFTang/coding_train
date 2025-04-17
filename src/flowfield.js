@@ -47,7 +47,7 @@ class Particle {
 		};
 
 		this.count = Math.random() * 300;
-		this.color = "rgba(255,255,0,0.05)";
+		this.color = "rgb(249, 238, 238)";
 	}
 
 	show() {
@@ -131,9 +131,10 @@ class Particle {
 
 function newScene() {
 	// oise3D = SimplexNoise.createNoise3D();
-	ctx.fillStyle = "#040610";
+	// ctx.fillRect
+	ctx.fillStyle = "rgba(240,240,240,255)";
 	ctx.fillRect(0, 0, width, height);
-	let col = `hsla(${Math.random() * 360},76%,80%,.05)`;
+	let col = `hsla(${Math.random() * 360},66%,60%,.05)`;
 	// let col =`rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},0.1)`;
 	for (let p of particles) {
 		p.color = col;
